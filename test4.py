@@ -6,15 +6,22 @@ import time
 
 print("Start vDisplay")
 # Set screen resolution to 1366 x 768 like most 15" laptops
-display = Display(visible=0, size=(1000, 1000))
+display = Display(visible=0, size=(1100, 1000))
 display.start()
 print("vDisplay started")
 
 # now Firefox will run in a virtual display.
 print("Get size")
 browser = webdriver.Firefox()
-browser.set_window_size(1900, 1080)
+browser.set_window_size(1100, 4000)
 browser.get("https://dodocontrol.ru/checks")
+
+inputElement = browser.find_element_by_xpath('//*[@id="socialNetworkLink"]')
+inputElement.send_keys('https://vk.com/id12867863')
+
+
+my_choice=browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/div/button')
+my_choice.click()
 
 # set timeouts
 #browser.set_script_timeout(30)
@@ -24,10 +31,12 @@ time.sleep(30)
 total_height = browser.execute_script("return document.body.parentNode.scrollHeight")
 browser.quit()
 
+print(total_height)
+
 # now Firefox will run in a virtual display.
 print("Open window with new size")
 browser = webdriver.Firefox()
-browser.set_window_size(1000, 3000)
+browser.set_window_size(1100, total_height)
 browser.get("https://dodocontrol.ru/checks")
 #el = browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/div/button')
 inputElement = browser.find_element_by_xpath('//*[@id="socialNetworkLink"]')
@@ -38,7 +47,8 @@ my_choice=browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/
 my_choice.click()
 
 #rint(el.text)
-
+print("Waiting 30 seconds")
+time.sleep(30)
 # Take screenshot
 print("Take screenshot")
 browser.save_screenshot("dodo.png")
