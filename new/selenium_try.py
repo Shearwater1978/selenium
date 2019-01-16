@@ -47,16 +47,13 @@ print("Open window with new size")
 browser = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver")
 browser.set_window_size(default_width, total_height)
 browser.get("https://dodocontrol.ru/checks")
-print(browser.execute_script('return document.readState;'))
 #el = browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/div/button')
 inputElement = browser.find_element_by_xpath('//*[@id="socialNetworkLink"]')
-inputElement.send_keys('https://vk.com/id12867863')
+inputElement.send_keys('https://vk.com/id')
 
 
 my_choice=browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/div/button')
 my_choice.click()
-
-print(browser.execute_script('return document.readState;'))
 
 html = browser.page_source
 filename = "/home/toptop/git/selenium/dodo_body/dodo_"+datetime.datetime.now().strftime("%d-%m-%Y_%H:%M")+".html"
@@ -67,16 +64,11 @@ with open(filename, 'w') as out_file:
 soup = BS(html, 'html.parser')
 #for cell in soup.select('#delivery_calendar > table > tbody > tr:nth-child(1) > td:nth-child(1)'):
 for cell in soup.find("div",{"id":"delivery_calendar"}).findAll("td"):
-#    print(dir(type(cell)))
     if cell.get("class")[0] not in ("blocked-day","inactive-day"):
         url = 'https://sms.ru/sms/send'
         data = ({'api_id':'id', 'to':'tel_num', 'msg':'Available day in operations!!!!'})
         r = requests.post(url, data=data)
 
-
-#rint(el.text)
-#print("Waiting 30 seconds")
-#time.sleep(30)
 # Take screenshot
 #print("Take screenshot")
 #browser.save_screenshot("dodo.png")
@@ -88,4 +80,4 @@ browser.quit()
 display.stop()
 
 
-print(">> Start in... "+datetime.datetime.now().strftime("%d-%m-%Y %H:%M"))
+print(">> End in... "+datetime.datetime.now().strftime("%d-%m-%Y %H:%M"))
