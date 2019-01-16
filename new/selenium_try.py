@@ -11,6 +11,9 @@ default_width = 1900
 default_height = 1080
 
 
+print(">> Start in... "+datetime.datetime.now().strftime("%d-%m-%Y %H:%M"))
+
+
 print("Start vDisplay")
 # Set screen resolution to 1366 x 768 like most 15" laptops
 display = Display(visible=0, size=(default_width, default_height))
@@ -19,7 +22,7 @@ print("vDisplay started")
 
 # now Firefox will run in a virtual display.
 print("Get size")
-browser = webdriver.Firefox()
+browser = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver")
 browser.set_window_size(default_width, default_height)
 browser.get("https://dodocontrol.ru/checks")
 
@@ -41,9 +44,10 @@ browser.quit()
 
 # now Firefox will run in a virtual display.
 print("Open window with new size")
-browser = webdriver.Firefox()
+browser = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver")
 browser.set_window_size(default_width, total_height)
 browser.get("https://dodocontrol.ru/checks")
+print(browser.execute_script('return document.readState;'))
 #el = browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/div/button')
 inputElement = browser.find_element_by_xpath('//*[@id="socialNetworkLink"]')
 inputElement.send_keys('https://vk.com/id12867863')
@@ -52,14 +56,10 @@ inputElement.send_keys('https://vk.com/id12867863')
 my_choice=browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/div/button')
 my_choice.click()
 
+print(browser.execute_script('return document.readState;'))
 
 html = browser.page_source
-filename = "dodo_"+datetime.datetime.now().strftime("%d-%m-%Y_%H:%M")+".html"
-url = 'https://sms.ru/sms/send'
-# Info for data stored in personal cabinet https://sms.ru
-data = ({'api_id':'%ID%', 'to':'%NUM%', 'msg':filename})
-r = requests.post(url, data=data)
-print(r.text)
+filename = "/home/toptop/git/selenium/dodo_body/dodo_"+datetime.datetime.now().strftime("%d-%m-%Y_%H:%M")+".html"
 
 
 with open(filename, 'w') as out_file:
@@ -69,7 +69,9 @@ soup = BS(html, 'html.parser')
 for cell in soup.find("div",{"id":"delivery_calendar"}).findAll("td"):
 #    print(dir(type(cell)))
     if cell.get("class")[0] not in ("blocked-day","inactive-day"):
-        print("Available day in operations!!!!")
+        url = 'https://sms.ru/sms/send'
+        data = ({'api_id':'id', 'to':'tel_num', 'msg':'Available day in operations!!!!'})
+        r = requests.post(url, data=data)
 
 
 #rint(el.text)
@@ -84,3 +86,6 @@ browser.quit()
 
 # quit Xvfb display
 display.stop()
+
+
+print(">> Start in... "+datetime.datetime.now().strftime("%d-%m-%Y %H:%M"))
