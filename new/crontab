@@ -1,0 +1,1 @@
+*/5 * * * * cd /home/toptop/git/selenium && /bin/sh /home/toptop/git/selenium/start.sh > /home/toptop/git/selenium/crontab.log 2>&1
