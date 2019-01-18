@@ -15,7 +15,6 @@ print(">> Start in... "+datetime.datetime.now().strftime("%d-%m-%Y %H:%M"))
 # Set screen resolution to 1366 x 768 like most 15" laptops
 display = Display(visible=0, size=(default_width, default_height))
 display.start()
-print("vDisplay started")
 
 # now Firefox will run in a virtual display.
 browser = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver")
@@ -39,10 +38,10 @@ print("Open window with new size")
 browser = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver")
 browser.set_window_size(default_width, total_height)
 browser.get("https://dodocontrol.ru/checks")
+
 #el = browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/div/button')
 inputElement = browser.find_element_by_xpath('//*[@id="socialNetworkLink"]')
 inputElement.send_keys('https://vk.com/id')
-
 
 my_choice=browser.find_element_by_xpath('//*[@id="anketa"]/div[1]/div[2]/div[2]/div/button')
 my_choice.click()
