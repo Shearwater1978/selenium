@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 export PATH="/home/toptop/.pyenv/bin/:$PATH"
 export PATH="/usr/local/bin/geckodriver:$PATH"
 
