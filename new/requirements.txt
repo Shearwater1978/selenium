@@ -1,11 +1,4 @@
-from pyvirtualdisplay import Display
-from selenium import webdriver
-import time
-from bs4 import BeautifulSoup as BS
-import datetime
-import requests
-
-pip intall Display, bs4, requests
+pip intall Display, bs4, requests, xvfb
 
 How to install geckodriver:
 
