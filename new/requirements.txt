@@ -1,0 +1,16 @@
+from pyvirtualdisplay import Display
+from selenium import webdriver
+import time
+from bs4 import BeautifulSoup as BS
+import datetime
+import requests
+
+pip intall Display, bs4, requests
+
+How to install geckodriver:
+
+wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+tar -xvzf geckodriver-v0.23.0-linux64.tar.gz
+chmod +x geckodriver
+sudo mv geckodriver /usr/local/bin/
+export PATH=$PATH:/usr/local/bin/geckodriver
