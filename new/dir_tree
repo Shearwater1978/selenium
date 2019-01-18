@@ -1,3 +1,7 @@
-dodo_arch/
-dodo_body/
-log/
+.
+├── dodo_arch
+├── dodo_body
+└── log
+clean.sh
+selenium_try.py
+start.sh
