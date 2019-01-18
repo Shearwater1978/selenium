@@ -2,8 +2,10 @@ pip intall Display, bs4, requests, xvfb
 
 How to install geckodriver:
 
-wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
-tar -xvzf geckodriver-v0.23.0-linux64.tar.gz
+Getting last verion by link: https://github.com/mozilla/geckodriver/releases/tag/%ver%
+
+wget https://github.com/mozilla/geckodriver/releases/download/%ver%/geckodriver-%ver%-linux64.tar.gz
+tar -xvzf geckodriver-%ver%-linux64.tar.gz
 chmod +x geckodriver
 sudo mv geckodriver /usr/local/bin/
 export PATH=$PATH:/usr/local/bin/geckodriver
