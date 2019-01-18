@@ -1,3 +1,6 @@
+python --version
+Python 3.6.0
+
 pip intall Display, bs4, requests, xvfb
 
 How to install geckodriver:
